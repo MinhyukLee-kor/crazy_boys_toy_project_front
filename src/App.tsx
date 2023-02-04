@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import callApi from "../utils/CallApiAxios";
 
-import './App.css';
-import SignIn from './pages/sign/SignIn';
-import SignUp from './pages/sign/SignUp';
+import "./App.css";
+import SignIn from "./pages/sign/SignIn";
+import SignUp from "./pages/sign/SignUp";
 
 function App() {
   return (
