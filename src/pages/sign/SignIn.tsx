@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import Avatar from '@mui/material/Avatar';
@@ -29,6 +29,10 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
+const fnSignIn = () => {
+
+}
+
 const fnAlert = () => {
   alert("안되지롱~");
 }
@@ -37,11 +41,19 @@ export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+
+    console.log("라이크디스쇼 !! : " + JSON.stringify(values));
+    // callApi("post", values);
   };
+
+  const [values, setValues] = useState({ email : "", password : ""  });
+
+  const handleChange = (event: { target: { name: any; value: any; }; }) => {
+    const { name, value } = event.target;
+    setValues({ ...values, [name]: value });
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -71,6 +83,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -81,6 +94,7 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -91,7 +105,6 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={fnAlert}
             >
               Sign In
             </Button>

@@ -1,7 +1,6 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import callApi from "../utils/CallApiAxios";
 
-import logo from './logo.svg';
 import './App.css';
 import SignIn from './pages/sign/SignIn';
 import SignUp from './pages/sign/SignUp';
