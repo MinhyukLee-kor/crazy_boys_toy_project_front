@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://localhost:8080",
+  baseURL: "http://localhost:8080",
 });
 
 const AUTH_TOKEN = "123";
@@ -37,9 +37,10 @@ export default async function callApi(url: string, method: string, params: any) 
     } else if (method === "post") {
         // POST
         console.log("post");
-        try {
+        try {        
             // POST 요청은 body에 실어 보냄
-            await instance.post(url, params);
+            const response = await instance.post(url, params);
+            alert(response.data);
         } catch (e) {
             console.error(e);
         }

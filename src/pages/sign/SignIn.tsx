@@ -46,15 +46,14 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    console.log("라이크디스쇼 !! : " + JSON.stringify(values));
-    callApi("/signin", "post", values);
+    callApi("/sign/signIn", "post", values);        
   };
 
   const [values, setValues] = useState({ email: "", password: "" });
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
+    setValues({ ...values, [name]: value });    
   };
 
   return (
@@ -85,10 +84,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="user_id"
               label="Email Address"
-              name="email"
-              autoComplete="email"
+              name="user_id"
+              autoComplete="user_id"
               autoFocus
               onChange={handleChange}
             />
