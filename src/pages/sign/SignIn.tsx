@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import callApi from "../../modules/CallApiAxios";
+import axios from "axios";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -42,14 +43,27 @@ const fnAlert = () => {
 };
 
 export default function SignIn() {
+  const [ ip , setIp ] = useState();
+
+  useEffect( () => {
+    // callApi("https://geolocation-db.com/json/", "get", null);
+      axios.get('https://geolocation-db.com/json/')
+      .then((res) => {
+        setIp(res.data.IPv4)
+      })
+  },[])
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    callApi("/sign/signIn", "post", values);        
+    let params = {
+      datas : values,
+      ip : ip
+    };
+    callApi("/sign/signIn", "post", params);        
   };
 
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({user_id: "", password: ""});
 
   const handleChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
